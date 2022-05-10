@@ -7,4 +7,5 @@ import java.util.List;
 public interface CatalogoGateway {
 
     List<Produto> getProdutos();
+    Produto getProduto(Long id);
 }

@@ -25,4 +25,10 @@ public class CatalogoGatewayImpl implements CatalogoGateway {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public Produto getProduto(Long id) {
+        return repository.findById(id)
+                .map(toProdutoConverter::convert)
+                .orElseGet(Produto::new);
+    }
 }
