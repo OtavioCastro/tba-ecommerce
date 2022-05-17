@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS PRODUTO(
-  ID                        BIGINT PRIMARY KEY,
+  ID                        BIGINT AUTO_INCREMENT PRIMARY KEY,
   NOME                      VARCHAR,
   QUANTIDADE                INT,
   VALOR                     DOUBLE,

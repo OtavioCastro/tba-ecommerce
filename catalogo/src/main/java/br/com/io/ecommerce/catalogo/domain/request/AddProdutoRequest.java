@@ -1,22 +1,15 @@
-package br.com.io.ecommerce.catalogo.integration.model;
+package br.com.io.ecommerce.catalogo.domain.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "PRODUTO")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProdutoModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class AddProdutoRequest {
     private String nome;
     private Integer quantidade;
     private Double valor;

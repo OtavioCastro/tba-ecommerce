@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS CLIENTE(
 
 
 CREATE TABLE IF NOT EXISTS ENDERECO(
-  ID                        BIGINT PRIMARY KEY,
+  ID                        BIGINT AUTO_INCREMENT PRIMARY KEY,
   LOGRADOURO                VARCHAR,
   BAIRRO                    VARCHAR,
   CIDADE                    VARCHAR,
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS ENDERECO(
 );
 
 CREATE TABLE IF NOT EXISTS AGENDAMENTO_ENTREGA(
-  ID                        BIGINT PRIMARY KEY,
+  ID                        BIGINT AUTO_INCREMENT PRIMARY KEY,
   DATA                      VARCHAR,
   TURNO                     VARCHAR,
   PEDIDO                    BIGINT,

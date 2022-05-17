@@ -1,9 +1,12 @@
 package br.com.io.ecommerce.catalogo.integration.impl;
 
 import br.com.io.ecommerce.catalogo.domain.Produto;
+import br.com.io.ecommerce.catalogo.domain.request.AddProdutoRequest;
 import br.com.io.ecommerce.catalogo.gateway.CatalogoGateway;
 import br.com.io.ecommerce.catalogo.integration.CatalogoRepository;
+import br.com.io.ecommerce.catalogo.integration.converter.AddProdutoRequestToProdutoModelConverter;
 import br.com.io.ecommerce.catalogo.integration.converter.ProdutoModelToProdutoConverter;
+import br.com.io.ecommerce.catalogo.integration.model.ProdutoModel;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,7 @@ public class CatalogoGatewayImpl implements CatalogoGateway {
 
     private final CatalogoRepository repository;
     private final ProdutoModelToProdutoConverter toProdutoConverter;
+    private final AddProdutoRequestToProdutoModelConverter toProdutoModelConverter;
 
     @Override
     public List<Produto> getProdutos() {
@@ -30,5 +34,12 @@ public class CatalogoGatewayImpl implements CatalogoGateway {
         return repository.findById(id)
                 .map(toProdutoConverter::convert)
                 .orElseGet(Produto::new);
+    }
+
+    @Override
+    public Produto addProduto(AddProdutoRequest produtoRequest) {
+        final ProdutoModel produtoModel = toProdutoModelConverter.convert(produtoRequest);
+        final ProdutoModel produtoToSave = repository.save(produtoModel);
+        return toProdutoConverter.convert(produtoToSave);
     }
 }

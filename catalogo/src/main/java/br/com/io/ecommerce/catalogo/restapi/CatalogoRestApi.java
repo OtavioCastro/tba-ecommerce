@@ -2,12 +2,9 @@ package br.com.io.ecommerce.catalogo.restapi;
 
 import br.com.io.ecommerce.catalogo.controller.CatalogoController;
 import br.com.io.ecommerce.catalogo.controller.resources.ProdutoResource;
-import br.com.io.ecommerce.catalogo.domain.Produto;
+import br.com.io.ecommerce.catalogo.controller.resources.request.AddProdutoRequestResource;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,4 +22,9 @@ public class CatalogoRestApi {
 
     @GetMapping("/{id}")
     public ProdutoResource getProduto(@PathVariable ("id") Long id) { return controller.getProduto(id); }
+
+    @PostMapping
+    public ProdutoResource addProduto(@RequestBody AddProdutoRequestResource produtoRequestResource) {
+        return controller.addProduto(produtoRequestResource);
+    }
 }
